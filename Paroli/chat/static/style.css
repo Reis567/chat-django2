@@ -1,0 +1,101 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root Colors */
+:root {
+  --pastel-blue: #AEC6CF;
+  --pastel-pink: #FFD1DC;
+  --pastel-green: #C3E6B4;
+  --pastel-yellow: #FFE29A;
+  --pastel-purple-light: #E5D4FF; 
+  --pastel-purple-dark: #BFA2FF;  
+  --pastel-purple-darker: #9160fb;
+}
+/* Body Styles */
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: var(--pastel-blue);
+}
+  
+
+.container {
+  border: 2px solid var(--pastel-purple-dark); /* Altera a cor da borda */
+  background-color: var(--pastel-purple-light); /* Altera a cor de fundo */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: var(--pastel-purple-light);
+  background-color: var(--pastel-purple-light);
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.time-right {
+  float: right;
+  color: var(--pastel-green);
+}
+
+.time-left {
+  float: left;
+  color: var(--pastel-blue);
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid var(--pastel-purple-light);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+  
+input[type=submit] {
+  width: 100%;
+  background-color: var(--pastel-purple-dark);
+  color: black;
+  font-weight: 900;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+  
+input[type=submit]:hover {
+  background-color: var(--pastel-purple-darker);
+  color: white;
+  transition: .5s;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
