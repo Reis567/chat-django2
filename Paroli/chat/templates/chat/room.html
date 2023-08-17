@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2>{{room_name}} - Paroli</h2>
+<h2>{{room}} - Paroli</h2>
 
 <div id="display">
  <div class="container darker">
@@ -37,7 +37,25 @@
 
 </body>
 
-<script type="">
+<script type="text/javascript">
+    $(document).on('submit','#post-form',function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type:'POST',
+            url:'/send',
+            data:{
+                username:$('#username').val(),
+                room_id:$('#room_id').val(),
+                message:$('#message').val(),
+                crsfmiddlewaretoken:$('input[name=crsfmiddlewaretoken']).val(),
+            },
+            success:function(data){
+                alert(data)
+            }
+        });
+        document.getElementById('message').value = ''
+    });
   
 </script>
 
