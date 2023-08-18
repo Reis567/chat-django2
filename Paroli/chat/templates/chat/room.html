@@ -23,29 +23,49 @@
 
 <script>
     $(document).ready(function(){
+        // Esta função será executada quando o documento estiver completamente carregado.
+
         setInterval(function(){
+            // Define um intervalo de tempo para fazer solicitações AJAX periódicas.
             $.ajax({
                 type: 'GET',
                 url: "/getMessages/{{room}}/",
+                // Faz uma solicitação GET para obter mensagens da URL "/getMessages/{{room}}/".
+
                 success: function(response){
+                    // Função a ser executada quando a solicitação for bem-sucedida.
                     console.log(response);
+                    // Exibe a resposta da solicitação no console do navegador (para fins de depuração).
+
                     $("#display").empty();
+                    // Limpa o conteúdo do elemento com o ID "display" (onde as mensagens serão exibidas).
+
                     for (var key in response.messages) {
+                        // Itera sobre cada mensagem na resposta recebida.
                         var message = response.messages[key];
                         var date = new Date(message.date);
-                        var time = date.toLocaleTimeString(); // Get the formatted time
+                        var time = date.toLocaleTimeString();
+                        // Obtém o horário formatado da mensagem.
 
                         var temp = "<div class='container darker'><b>" + message.user + "</b><p>" + message.value + "</p><span class='time-left'>" + time + "</span></div>";
+                        // Cria uma string HTML para exibir a mensagem no formato desejado.
+                        
                         $("#display").append(temp);
+                        // Adiciona a string HTML à área de exibição das mensagens.
                     }
                 },
                 error: function(response){
-                    alert('An error occurred');
+                    // Função a ser executada se a solicitação encontrar um erro.
+                    alert('Ocorreu um erro');
+                    // Exibe um alerta no navegador indicando que ocorreu um erro.
                 }
             });
         }, 1000);
+        // Define um intervalo de 1000 milissegundos (1 segundo) para a execução do código acima.
+        // Isso resultará na atualização periódica das mensagens exibidas.
     });
 </script>
+
 
 
 
@@ -64,24 +84,47 @@
 
 <script type="text/javascript">
     $(document).on('submit', '#post-form', function(e) {
+        // Esta função é acionada quando o formulário com ID "post-form" é enviado.
+
         e.preventDefault();
+        // Impede o comportamento padrão de enviar o formulário, para que possamos lidar com isso via AJAX.
 
         $.ajax({
             type: 'POST',
+            // Define o método HTTP da solicitação como POST.
+
             url: '/send',
+            // Define a URL de destino para a qual a solicitação será enviada.
+
             data: {
                 username: $('#username').val(),
+                // Obtém o valor do campo de entrada com o ID "username".
+                
                 room_id: $('#room_id').val(),
+                // Obtém o valor do campo de entrada com o ID "room_id".
+
                 message: $('#message').val(),
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),  // Correção aqui
+                // Obtém o valor do campo de entrada com o ID "message".
+
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                // Obtém o valor do token CSRF, necessário para autenticação de formulário no Django.
+                // O token é obtido do campo de entrada de nome "csrfmiddlewaretoken".
             },
             success: function(data) {
+                // Função a ser executada quando a solicitação for bem-sucedida.
+                // Neste caso, não há ação específica após o envio bem-sucedido.
+
                 //alert(data);
+                // Pode ser usada para exibir uma mensagem de alerta com o conteúdo "data".
+                // Neste caso, a linha está comentada, então a mensagem não será exibida.
             }
         });
+
         document.getElementById('message').value = '';
+        // Limpa o conteúdo do campo de entrada com o ID "message".
     });
 </script>
+
 
 
 </html>
