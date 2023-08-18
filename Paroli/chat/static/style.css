@@ -17,11 +17,22 @@
 }
 /* Body Styles */
 body {
+  font-family: 'Montserrat', sans-serif;
   max-width: 800px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
   background-color: var(--pastel-blue);
 }
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--pastel-purple-darker);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
   
 
 .container {
@@ -64,7 +75,7 @@ body {
 
 .time-left {
   float: left;
-  color: var(--pastel-blue);
+  color: var(--pastel-purple-darker);
 }
 input[type=text], select {
   width: 100%;
@@ -98,4 +109,12 @@ div {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+#display {
+  max-height: 600px;
+  overflow: auto; /* Adiciona um scroll quando necessário */
+}
+
+h2 span{
+  font-size: 35px;
 }
